@@ -1,0 +1,219 @@
+* {
+				padding: 0;
+				margin: 0;
+				font-size: 12px;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				font-family: "Î¢ÈíÑÅºÚ";
+			}
+			
+			.main {
+				width: 100%;
+				height: 588px;
+				background-color: #14212B;
+			}
+			
+			.img {
+				width: 1130px;
+				height: 100px;
+				margin: 0 auto;
+				background-color: white;
+			}
+			
+			.main .body-main {
+				width: 1130px;
+				margin: 0 auto;
+				padding-top: 30px;
+				font-family: "Î¢ÈíÑÅºÚ";
+				height: 588px;
+				background-image: url(../img/Login/banner.jpg);
+				background-repeat: no-repeat;
+			}
+			
+			.main .body-main .body-Login {
+				width: 400px;
+				height: 524px;
+				position: relative;
+				margin-left: 730px;
+				background-color: #fff;
+				color: #757575;
+			}
+			
+			.main .body-Login .switch-Login {
+				color: #666666;
+				width: 400px;
+				height: 31.5px;
+				padding: 27px 0px 24px 0px;
+				text-align: center;
+				line-height: 24px;
+			}
+			
+			.main .body-Login .switch-Login span {
+				display: inline-block;
+				font-size: 24px;
+			}
+			.main .body-Login .switch-Login span:hover{
+				color: #F56600;
+			}
+		
+			
+			.main .body-Login .switch-Login .span {
+				margin: 0 30px;
+				font-size: 24px;
+			}
+			
+			.main .body-Login .form {
+				width: 400px;
+				height: 216px;
+			}
+			
+			.main .body-Login .form .submit {
+				width: 338px;
+				height: 64px;
+				padding: 10px 0px 3px 0px;
+				margin: 0 auto;
+				text-align: center;
+				margin-top: 5px;
+			}
+			
+			.main .body-Login .nodenglu {
+				width: 400px;
+				height: 32px;
+				font-size: 14px;
+				color: #999;
+				text-align: center;
+			
+			}
+			
+			
+			.main .body-Login .nodenglu a {
+				display: inline-block;
+				width: auto;
+				height: 29px;
+				padding: 0 9px 0 6px;
+				cursor: pointer;
+					text-decoration: none;
+			}
+			
+			
+			.bottom {
+				width: 100%;
+				height: 80px;
+				background-color: white;
+				padding-top: 70px;
+				text-align: center;
+			}
+			
+			.bottom h6 {
+				font-weight: normal;
+				width: 230px;
+				margin: 0 auto;
+				height: 16px;
+				display: block;
+				text-align: center;
+			}
+			
+			.bottom a {
+				display: inline-block;
+				float: left;
+				margin-left: 8px;
+				cursor: pointer;
+				color: #757575;
+			}
+			
+			.bottom p {
+				display: block;
+				text-align: center;
+				font-size: 12px;
+				color: 12px;
+				width: 1329px;
+				height: 23px;
+				padding: 10px;
+				margin: 0 auto;
+			}
+			
+			
+			#saomadenglu {
+				position: absolute;
+				top: 82px;
+				text-align: center;
+				display: none;
+				width: 400px;
+				height: 280px;
+				background-color: white;
+				font-size: 14px;
+				padding-top: 78px;
+			}
+			
+			.denglu-img {
+				width: 338px;
+				height: 33px;
+				padding-top: 3px;
+				margin: 0 auto;
+				margin-top: 20px;
+				padding: 0 30px;
+				padding-left: 45px;
+			}
+			
+			.denglu-img a {
+				display: inline-block;
+				width: 32px;
+				height: 32px;
+				margin: 0 20px;
+			}
+			
+			.other-denglu {
+				margin-top: 80px;
+			}
+			
+			.img11 {
+				background-image: url(../img/Login/login1.png);
+			}
+			
+			.img12 {
+				background-image: url(../img/Login/login2.png);
+			}
+			
+			.img13 {
+				background-image: url(../img/Login/login3.png)
+			}
+			
+			.img14 {
+				background-image: url(../img/Login/login4.png)
+			}
+			
+			.img11:hover {
+				background-image: url(../img/Login/login1-QQ.png)
+			}
+			
+			.img12:hover {
+				background-image: url(../img/Login/login2-weibo.png)
+			}
+			
+			.img13:hover {
+				background-image: url(../img/Login/login3-zhifubao.png)
+			}
+			
+			.img14:hover {
+				background-image: url(../img/Login/login4-weixin.png)
+			}
+			
+			.ganggang {
+				display: inline-block;
+				width: 150px;
+				margin-bottom: 5px;
+				border-bottom: 1px solid #E0E0E0;
+			}
+			
+			#bottom a:hover {
+				color: black;
+			}
+			.main .body-Login .switch-Login .active{
+				color: #F56600;
+			}
+			.main .body-Login .switch-Login .hover{
+				color: #666666;
+			}

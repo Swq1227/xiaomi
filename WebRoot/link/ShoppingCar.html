@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ShoppingCar.html</title>
+
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/shoppingcar.css" />
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script>
+$(function(){
+$.ajax({
+url:"../ShoppingCarServlet",
+data:{},
+type:"post",
+dataType:"json",
+success:function(data){
+var datas=data;
+var chtml = "";
+$.each(datas, function(index, value) {   
+	//将数据增加到页面中，这里设置数据显示样式
+	/* <li>
+				<div class="mainx">
+					<div class="maina">
+						<i onclick="xuanze(this)"></i>
+					</div>
+					<div class="main2">
+						<img src="../img/shoppingcar/pms_1496997930.13622399!80x80.jpg" />
+					</div>
+					<div class="main3">
+						<a href="#">小米笔记本Air 13 i5 8G 256G 2G独显 银色</a>
+						<p>适配机型： 小米笔记本</p>
+
+					</div>
+					<div class="main4">5499元</div>
+					<div class="main5">
+						<div class="shuliang">
+							<span class="jianjian" onclick="jianjian(this)">-</span> <span><input
+								type="text" name="" id="number" value="1" size="5px" /> </span> <span
+								class="jiajia" onclick="jiajia(this)">+</span>
+						</div>
+
+					</div>
+					<div class="main6">5499元</div>
+					<div class="main7">
+						<input type="button" value="X" onclick="del(this)" id="shanchu" />
+
+					</div>
+
+				</div>
+
+			</li> */
+chtml +="<li><div class='mainx'><div class='maina'><i onclick='xuanze(this)'></i></div><div class='main2'>"; 
+chtml +="<img src'../"+value.curl+"'/></div><div class='main3'><a href='#'>"+value.cname+"</a><p>"+value.content+"</p></div>";
+chtml +="<div class='main4'>"+value.cprice+"</div><div class='main5'><div class='shuliang'><span class='jianjian' onclick='jianjian(this)'>";
+chtml +="-</span> <span><input type='text' name='' id='number' value='1' size='5px' /> </span> <span class='jiajia' onclick='jiajia(this)'>";
+chtml +="+</span></div></div><div class='main6'>"+value.cprice+"</div><div class='main7'><a href='../DelShopCarServlet?del_id="+ value.gid+ "' id='shanchu'>";
+chtml +="X</a></div></div></li>";
+ }); 
+$("#sc").html(chtml);
+},
+error : function() {
+					alert("错误，请检查代码");
+				}
+
+
+});
+/* $("#shanchu").click(function(){
+alert("11");
+			$.ajax({
+				url : "DelShopCarServlet",
+				data : { 
+				
+				},
+				type : "post",
+				dataType : "text",
+				success : function(ok) {
+			       if(ok=="true"){
+			       alert("删除成功");
+			       }
+			
+				},
+			});
+
+			}); */
+});
+
+
+
+
+
+</script>
+
+</head>
+
+<body>
+	<div class="modal">
+		<div>
+			<h2>x</h2>
+			<h3>确认删除？</h3>
+			<p>
+				<span>取消</span> <span style=" background-color: #FF6700">确定</span>
+			</p>
+		</div>
+	</div>
+	<div class="gwctop5">
+		<div class="gwctop">
+			<div class="gwctoplog">
+				<img src="../img/shoppingcar/2017-08-01_144554.png" />
+				<div class="gwctoplogchang">
+					<a href="../home.jsp"><img src="../img/shoppingcar/2017-08-01_144637.png" /></a>
+				</div>
+			</div>
+			<div class="gwctop1">
+				<h2>我的购物车</h2>
+				<p>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</p>
+			</div>
+			<div class="gwctop2">
+				
+			</div>
+
+		</div>
+	</div>
+	<div class="main">
+		
+			
+			
+
+				<div class="menu">
+					<div class="main1">
+						<i id="quanxuan"></i>全选
+					</div>
+					<div class="main2" style="height: 70px; "></div>
+					<div class="main3" style="height: 70px; line-height: 70px; ">
+						商品名称</div>
+					<div class="main4" style="height: 70px; line-height: 70px;">
+						单价</div>
+					<div class="main5" style="height: 70px; line-height: 70px; ">
+						数量</div>
+					<div class="main6"
+						style="height: 70px; line-height: 70px;color: #424242; ">小记
+
+					</div>
+					<div class="main7" style="height: 70px; line-height: 70px;">
+						操作</div>
+
+				</div>
+           
+			<ul id="sc">
+			<!-- <li>
+				<div class="mainx">
+					<div class="maina">
+						<i onclick="xuanze(this)"></i>
+					</div>
+					<div class="main2">
+						<img src="../img/shoppingcar/pms_1496997930.13622399!80x80.jpg" />
+					</div>
+					<div class="main3">
+						<a href="#">小米笔记本Air 13 i5 8G 256G 2G独显 银色</a>
+						<p>适配机型： 小米笔记本</p>
+
+					</div>
+					<div class="main4">5499元</div>
+					<div class="main5">
+						<div class="shuliang">
+							<span class="jianjian" onclick="jianjian(this)">-</span> <span><input
+								type="text" name="" id="number" value="1" size="5px" /> </span> <span
+								class="jiajia" onclick="jiajia(this)">+</span>
+						</div>
+
+					</div>
+					<div class="main6">5499元</div>
+					<div class="main7">
+						<input type="button" value="X" onclick="del(this)" id="shanchu" />
+
+					</div>
+
+				</div>
+
+			</li>
+			<li>
+				<div class="mainx">
+					<div class="maina">
+						<i onclick="xuanze(this)"></i>
+					</div>
+					<div class="main2">
+						<img src="../img/shoppingcar/pms_1493189048.87486734!80x80.jpg" />
+					</div>
+					<div class="main3">小米网络音响 礼品装</div>
+					<div class="main4">345元</div>
+					<div class="main5">
+						<div class="shuliang">
+							<span class="jianjian" onclick="jianjian(this)">-</span> <span><input
+								type="text" name="" id="number" value="1" size="5px" /> </span> <span
+								class="jiajia" onclick="jiajia(this)">+</span>
+						</div>
+					</div>
+					<div class="main6">345元</div>
+					<div class="main7">
+						<input type="button" value="X" onclick="del(this)" id="shanchu" />
+
+					</div>
+
+				</div>
+
+			</li>
+			<li>
+				<div class="mainx">
+					<div class="maina">
+						<i onclick="xuanze(this)"></i>
+					</div>
+					<div class="main2">
+						<img src="../img/shoppingcar/pms_1492138590.26071212!80x80.jpg" />
+					</div>
+					<div class="main3">米家插线板6位基础版 白色 通用</div>
+					<div class="main4">75元</div>
+					<div class="main5">
+						<div class="shuliang">
+							<span class="jianjian" onclick="jianjian(this)">-</span> <span><input
+								type="text" name="" id="number" value="1" /> </span> <span
+								class="jiajia" onclick="jiajia(this)">+</span>
+						</div>
+
+					</div>
+					<div class="main6">75元</div>
+					<div class="main7">
+						<input type="button" value="X" onclick="del(this)" id="shanchu" />
+
+					</div>
+
+				</div>
+
+			</li> -->
+		</ul>
+		<div id="tanchugoods">
+			<ul>
+				<li onclick="add2(this)"><a><img
+						src="../img/shoppingcar/2017-08-07_105631.png"
+						style="vertical-align: middle; border-radius: 50% ; " />+25元得小米活塞耳机
+						清新版 25元</a>
+					<div class="motaikuang1" id="mo">
+
+						<div class="mt-header" style="color: white;">
+							<h3>选择商品</h3>
+							<span onclick="delmotai(this)">X</span>
+						</div>
+						<div class="mt-body">
+							<ul id="ul">
+								<li onclick="xuanqu(this)">
+									<div class="jrgoods">
+										<img class="jrgoodsimg"
+											src="../img/shoppingcar/pms_1482321199.12589253!220x220.jpg" />
+										<p class="jrgoodsname">
+											<a href="#">小米活塞耳机 清新版 黑色</a>
+										</p>
+										<p class="jrgoodsprice">25元</p>
+										<div class="div">
+											<span class="xuanzhong"></span>
+										</div>
+
+									</div>
+								</li>
+								<li onclick="xuanqu(this)">
+									<div class="jrgoods">
+										<img class="jrgoodsimg"
+											src="../img/shoppingcar/pms_1482321205.78014235!220x220.jpg" />
+										<p class="jrgoodsname">
+											<a href="#">小米活塞耳机 清新版 银色</a>
+										</p>
+										<p class="jrgoodsprice">25元</p>
+										<div class="div">
+											<span class="xuanzhong"></span>
+										</div>
+
+									</div>
+								</li>
+								<li onclick="xuanqu(this)">
+									<div class="jrgoods">
+										<img class="jrgoodsimg"
+											src="../img/shoppingcar/pms_1482321209.75977825!220x220.jpg" />
+										<p class="jrgoodsname">
+											<a href="#">小米活塞耳机 清新版 粉色</a>
+										</p>
+										<p class="jrgoodsprice">25元</p>
+										<div class="div">
+											<span class="xuanzhong"></span>
+										</div>
+
+									</div>
+								</li>
+								<li onclick="xuanqu(this)">
+									<div class="jrgoods">
+										<img class="jrgoodsimg"
+											src="../img/shoppingcar/pms_1482321212.47485716!220x220.jpg" />
+										<p class="jrgoodsname">
+											<a href="#">小米活塞耳机 清新版 紫色</a>
+										</p>
+										<p class="jrgoodsprice">25元</p>
+										<div class="div">
+											<span class="xuanzhong"></span>
+										</div>
+
+									</div>
+								</li>
+								<li onclick="xuanqu(this)">
+									<div class="jrgoods">
+										<img class="jrgoodsimg"
+											src="../img/shoppingcar/pms_1482321218.65298411!220x220.jpg" />
+										<p class="jrgoodsname">
+											<a href="#">小米活塞耳机 清新版 蓝色</a>
+										</p>
+										<p class="jrgoodsprice">25元</p>
+										<div class="div">
+											<span class="xuanzhong"></span>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="mt-foot">
+							<div class="mt-foot1" onclick="add3(this)">加入购物车</div>
+						</div>
+					</div></li>
+				<li onclick="add2(this)"><a><img
+						src="../img/shoppingcar/2017-08-07_105631.png"
+						style="vertical-align: middle; border-radius: 50%" />米家随身风扇 14.9元</a>
+				</li>
+			</ul>
+
+		</div>
+		<div id="hejidiv">
+			<div class="left">
+				<a href="#">继续购物</a><span class="left1"></span>共<span class="left2"
+					id="goodsnum">3</span>件商品，已选择 <span class="left2" id="rgoodnum"
+					style="color: #FF6700;"> 0 </span>件
+			</div>
+			<div class="right">
+				<p>
+					合计（不含运费）： <span id="sumprice" style="font-size: 30px;">0.00</span>元
+				</p>
+				<a href="#"> <input type="submit" id="jiesuan" value="去结算" />
+				</a>
+			</div>
+		</div>
+		<div></div>
+		<div class="mainbottom">
+			<div class="mainbottom1"></div>
+			<span class="mainbottomspan">买购物车中商品的人还买了</span>
+			<div class="mainbottom2"></div>
+
+		</div>
+	</div>
+	<div id="jiaru">
+		<ul>
+			<li>
+				<div class="jrgoods">
+					<img class="jrgoodsimg"
+						src="../img/shoppingcar/T1_FDjBmDT1RXrhCrK!140x140.jpg" />
+					<p class="jrgoodsname">
+						<a href="#">小米方盒子蓝牙音箱</a>
+					</p>
+					<p class="jrgoodsprice">89元</p>
+					<p class="jrgoodsgood">1.9万人好评</p>
+					<div class="jrgoodsend" onclick="add(this)">加入购物车</div>
+				</div>
+			</li>
+			<li>
+				<div class="jrgoods">
+					<img class="jrgoodsimg"
+						src="../img/shoppingcar/pms_1480563690.92225606!140x140.jpg" />
+					<p class="jrgoodsname">
+						<a href="#">小米手环2腕带</a>
+					</p>
+					<p class="jrgoodsprice">19.9元</p>
+					<p class="jrgoodsgood">2万人好评</p>
+					<div class="jrgoodsend" onclick="add(this)">加入购物车</div>
+				</div>
+			</li>
+			<li>
+				<div class="jrgoods">
+					<img class="jrgoodsimg"
+						src="../img/shoppingcar/pms_1492411196.76294034!140x140.jpg">
+					<p class="jrgoodsname">
+						<a href="#">米家智能插线板</a>
+					</p>
+					<p class="jrgoodsprice">69元</p>
+					<p class="jrgoodsgood">1285人好评</p>
+					<div class="jrgoodsend" onclick="add(this)">加入购物车</div>
+				</div>
+			</li>
+			<li>
+				<div class="jrgoods">
+					<img class="jrgoodsimg"
+						src="../img/shoppingcar/T178EjBjVT1RXrhCrK!140x140.jpg" />
+					<p class="jrgoodsname">
+						<a href="#">彩虹7号电池（10粒装）</a>
+					</p>
+					<p class="jrgoodsprice">9.9元</p>
+					<p class="jrgoodsgood">6.8万人好评</p>
+					<div class="jrgoodsend" onclick="add(this)">加入购物车</div>
+				</div>
+			</li>
+			<li>
+				<div class="jrgoods">
+					<img class="jrgoodsimg"
+						src="../img/shoppingcar/T1F5K_BjVv1RXrhCrK!140x140 (1).jpg" />
+					<p class="jrgoodsname">
+						<a href="#">小米小钢炮蓝牙音箱2</a>
+					</p>
+					<p class="jrgoodsprice">129元</p>
+					<p class="jrgoodsgood">2.8万人好评</p>
+					<div class="jrgoodsend" onclick="add(this)">加入购物车</div>
+				</div>
+			</li>
+
+		</ul>
+	</div>
+	<div class="footer">
+		<div class="foot">
+			<div class="foot1">
+				<ul>
+					<li><img class="img1" /> <a href="#">预约维修服务</a></li>
+					<li><img class="img1" /> <a href="#">7天无理由退货</a></li>
+					<li><img class="img1" /> <a href="#">15天免费换货</a></li>
+					<li><img class="img1" /> <a href="#">满150元包邮</a></li>
+					<li style="border: none;"><a href="#">520余家售后网点</a></li>
+				</ul>
+			</div>
+			<div class="foot2">
+				<ul>
+					<li>
+						<ul>
+							<li class="dd">帮助中心</li>
+							<li><a href="#">账户管理</a></li>
+							<li><a href="#">购物指南</a></li>
+							<li><a href="#">订单操作</a></li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li class="dd">服务支持</li>
+							<li><a href="#">售后政策</a></li>
+							<li><a href="#">自助服务</a></li>
+							<li><a href="#">相关下载</a></li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li class="dd">线下门店</li>
+							<li><a href="#">小米之家</a></li>
+							<li><a href="#">服务网点</a></li>
+							<li><a href="#">零售网点</a></li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li class="dd">关于小米</li>
+							<li><a href="#">了解小米</a></li>
+							<li><a href="#">加入小米</a></li>
+							<li><a href="#">联系我们</a></li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li class="dd">关注我们</li>
+							<li><a href="#">新浪微博</a></li>
+							<li><a href="#">小米部落</a></li>
+							<li><a href="#">官方微信</a></li>
+						</ul>
+					</li>
+					<li>
+						<ul>
+							<li class="dd">特色服务</li>
+							<li><a href="#">F 码通道</a></li>
+							<li><a href="#">礼物码</a></li>
+							<li><a href="#">防伪查询</a></li>
+						</ul>
+					</li>
+				</ul>
+				<div class="dianhua">
+					<p class="p1">400-100-5678</p>
+					<p class="p2">周一至周日 8:00-18:00</p>
+
+					<a href="#">
+						<p class="p3">（仅收市话费）</p>
+					</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="bottom">
+			<div class="bottom1">
+				<div class="bottom-left">
+					<div class="logo">
+						<a href="#"><img src="../img/shoppingcar/logo-footer.png" />
+						</a>
+					</div>
+					<ul>
+						<li><a href="#">小米商城</a></li>
+						<li>|</li>
+						<li><a href="#">MIUI</a></li>
+						<li>|</li>
+						<li><a href="#">米聊</a></li>
+						<li>|</li>
+						<li><a href="#">多看书城</a></li>
+						<li>|</li>
+						<li><a href="#">小米路由器</a></li>
+						<li>|</li>
+						<li><a href="#">视频电话</a></li>
+						<li>|</li>
+						<li><a href="#">小米天猫店</a></li>
+						<li>|</li>
+						<li><a href="#">小米淘宝直营店</a></li>
+						<li>|</li>
+						<li><a href="#">小米网盟</a></li>
+						<li>|</li>
+						<li><a href="#">小米移动</a></li>
+						<li>|</li>
+						<li><a href="#">隐私政策</a></li>
+						<li>|</li>
+						<li><a href="#">Select Region</a></li>
+					</ul>
+					<p class="bottom-jubao">©mi.com 京ICP证110507号 京ICP备10046444号
+						京公网安备11010802020134号 京网文[2014]0059-0009号</p>
+					<p class="bottom-jubao">违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+				</div>
+				<div class="bottom-img">
+					<a href="#"><img src="../img/shoppingcar/truste.png"
+						width="83px" /></a> <a href="#"><img
+						src="../img/shoppingcar/v-logo-1.png" /></a> <a href="#"><img
+						src="../img/shoppingcar/v-logo-2.png" /></a> <a href="#"><img
+						src="../img/shoppingcar/v-logo-3.png" /></a>
+				</div>
+
+			</div>
+			<div class="bottom-end">
+				<p class="bottom-end-p" style="font-family:'仿宋';">探索黑科技，小米为发烧而生!</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var quanxuan = document.getElementById("quanxuan");
+
+		//选择按钮//
+		//         	
+		function xuanze(t) {
+			if (t.className == "active") {
+				if (quanxuan.className == "active") {
+					quanxuan.className = "";
+				}
+				t.className = "";
+			} else {
+				t.className = "active";
+			}
+			zongji();
+			jisuanprice();
+			add1();
+
+		}
+		//结算按钮//
+		function jisuanprice() {
+			var jiesuan = document.getElementById("jiesuan");
+			var isnumber = document.getElementsByTagName("i");
+			for (var i = 0; i < isnumber.length; i++) {
+				if (isnumber[i].className == "active") {
+					jiesuan.style.backgroundColor = "#FF6700";
+					jiesuan.style.Color = "#FFFFFF";
+				}
+			}
+		}
+		//全选//
+		quanxuan.onclick = function() {
+			var isnumber = document.getElementsByTagName("i");
+			if (quanxuan.className == "") {
+				quanxuan.className = "active";
+				for (var i = 0; i < isnumber.length; i++) {
+					isnumber[i].className = "active";
+				}
+			} else if (quanxuan.className == "active") {
+				for (var i = 0; i < isnumber.length; i++) {
+					isnumber[i].className = "";
+				}
+			}
+			zongji();
+			jisuanprice();
+			add1();
+
+		};
+		//加法
+		function jiajia(t) {
+			t.parentNode.children[1].firstElementChild.value = parseFloat(t.parentNode.children[1].firstElementChild.value) + 1;
+			xiaoji(t.parentNode.children[1].firstElementChild);
+			zongji();
+		}
+		//减法
+		function jianjian(t) {
+			if (t.parentNode.children[1].firstElementChild.value > 1) {
+				t.parentNode.children[1].firstElementChild.value = parseFloat(t.parentNode.children[1].firstElementChild.value) - 1;
+			}
+			xiaoji(t.parentNode.children[1].firstElementChild);
+			zongji();
+		}
+		//小记
+		function xiaoji(t) {
+			var goodsprince = parseFloat(t.parentNode.parentNode.parentNode.parentNode.children[3].innerHTML);
+			var goodsnum = t.value;
+
+			var sum = goodsnum * goodsprince;
+			t.parentNode.parentNode.parentNode.parentNode.children[5].innerHTML = sum
+					.toFixed(2)
+					+ "元";
+		}
+		//总计
+		function zongji() {
+			var sum = 0;
+			var m = 0;
+			var n = 0;
+			var isnumber = document.getElementsByTagName("i");
+			var hejidiv = document.getElementById("hejidiv");
+			for (var i = 1; i < isnumber.length; i++) {
+				m += parseFloat(isnumber[i].parentNode.parentNode.children[4].firstElementChild.children[1].firstElementChild.value);
+				hejidiv.firstElementChild.children[2].innerHTML = m;
+				if (isnumber[i].className == "active") {
+					sum += parseFloat(isnumber[i].parentNode.parentNode.children[5].innerHTML);
+				}
+				hejidiv.children[1].firstElementChild.firstElementChild.innerHTML = sum
+						.toFixed(2);
+			}
+
+			for (var i = 1; i < isnumber.length; i++) {
+
+				if (isnumber[i].className == "active") {
+					n += parseFloat(isnumber[i].parentNode.parentNode.children[4].firstElementChild.children[1].firstElementChild.value);
+
+				}
+				hejidiv.firstElementChild.lastElementChild.innerHTML = n;
+				hejidiv.firstElementChild.lastElementChild.style.color = "#FF6700";
+			}
+		}
+		</script >
+</body>
+</html>
